@@ -22,3 +22,42 @@ body {
   max-width: 100vw;
 }
 
+h1{
+  font-size: 3.625rem;
+  line-height: 60px;
+
+  @media(max-width:1180px){
+    font-size: 3rem;
+    line-height: 47px;
+
+  }
+
+  @media(max-width:620px){
+    font-size: 2.2rem;
+    line-height: 43px;
+
+  }
+
+}
+
+h2{
+  font-size: 1.25rem;
+  line-height: 26px;
+}
+
+.category{
+  font-size: 0.75rem;
+  line-height: 15.6px;
+}
+
+.economy{
+  color: var(--red);
+}
+
+.education{
+  color: var(--blue);
+}
+
+.diversities{
+  color: var(--green);
+}
