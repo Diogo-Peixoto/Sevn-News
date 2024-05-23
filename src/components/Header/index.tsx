@@ -1,3 +1,5 @@
+import styles from './styles.module.css'
+
 export const Header = () => {
-  return <header>SEVN NEWS</header>
+  return <header className={styles.header}>SEVN NEWS</header>
 }
