@@ -1,6 +1,9 @@
 .header{
     width: 100%;
     height: 54px;
+    background-color: var(--yellow);
+    color: var(--black);
+    font-size: 1.438rem;
 
     display: flex;
     align-items: center;
