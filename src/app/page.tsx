@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main className={styles.container}>
+    <main className={`${styles.container} container`}>
       <Advertising />
       <section className={styles.mainArticles}>
         <article className={styles.mainNews}>
