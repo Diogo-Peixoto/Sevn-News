@@ -4,9 +4,13 @@ import Image from 'next/image'
 import { api } from '@/services/api'
 import { IArticle } from '@/interfaces'
 
-export const getData = async () => {
+interface IGetArticlesProps {
+  route: 'main' | 'secondary'
+}
+
+export const getArticles = async ({ route }: IGetArticlesProps) => {
   try {
-    const { data } = await api.get('/articles/main')
+    const { data } = await api.get(`/articles/${route}`)
 
     return data.articles as IArticle[]
   } catch (err) {
@@ -16,8 +20,10 @@ export const getData = async () => {
 }
 
 export default async function Home() {
-  const data = await getData()
-  const mainArticle = data[0]
+  const dataMainArticles = await getArticles({ route: 'main' })
+  const mainArticle = dataMainArticles[0]
+
+  const dataSecondaryArticles = await getArticles({ route: 'secondary' })
 
   return (
     <main className={`${styles.container} container`}>
@@ -28,7 +34,7 @@ export default async function Home() {
           <h1>{mainArticle.title}</h1>
         </article>
         <div className={styles.boxSecondaryArticle}>
-          {data.map((article, index) => {
+          {dataMainArticles.map((article, index) => {
             if (index === 0) {
               return <></>
             }
@@ -56,38 +62,14 @@ export default async function Home() {
       </section>
 
       <section className={styles.boxThirArticle}>
-        <article className={styles.thirdArticle}>
-          <div className={styles.vector} />
-          Quem não tiver valores a receber poderá ter nas próximas fases, diz BC
-        </article>
-        <article className={styles.thirdArticle}>
-          <div className={styles.vector} />
-          Quem não tiver valores a receber poderá ter nas próximas fases, diz BC
-        </article>
-        <article className={styles.thirdArticle}>
-          <div className={styles.vector} />
-          Quem não tiver valores a receber poderá ter nas próximas fases, diz BC
-        </article>
-        <article className={styles.thirdArticle}>
-          <div className={styles.vector} />
-          Quem não tiver valores a receber poderá ter nas próximas fases, diz BC
-        </article>
-        <article className={styles.thirdArticle}>
-          <div className={styles.vector} />
-          Quem não tiver valores a receber poderá ter nas próximas fases, diz BC
-        </article>
-        <article className={styles.thirdArticle}>
-          <div className={styles.vector} />
-          Quem não tiver valores a receber poderá ter nas próximas fases, diz BC
-        </article>
-        <article className={styles.thirdArticle}>
-          <div className={styles.vector} />
-          Quem não tiver valores a receber poderá ter nas próximas fases, diz BC
-        </article>
-        <article className={styles.thirdArticle}>
-          <div className={styles.vector} />
-          Quem não tiver valores a receber poderá ter nas próximas fases, diz BC
-        </article>
+        {dataSecondaryArticles.map((article) => {
+          return (
+            <article key={article.id} className={styles.thirdArticle}>
+              <div className={styles.vector} />
+              {article.title}
+            </article>
+          )
+        })}
       </section>
     </main>
   )
