@@ -1,48 +1,57 @@
 import { Advertising } from '@/components/Advertising'
 import styles from './page.module.css'
 import Image from 'next/image'
+import { api } from '@/services/api'
+import { IArticle } from '@/interfaces'
 
-export default function Home() {
+export const getData = async () => {
+  try {
+    const { data } = await api.get('/articles/main')
+
+    return data.articles as IArticle[]
+  } catch (err) {
+    console.error(err)
+    throw new Error('Failed to fetch data')
+  }
+}
+
+export default async function Home() {
+  const data = await getData()
+  const mainArticle = data[0]
+
   return (
     <main className={`${styles.container} container`}>
       <Advertising />
       <section className={styles.mainArticles}>
-        <article className={styles.mainNews}>
-          <p className="category economy">ECONOMIA</p>
-          <h1>
-            Quem não tiver valores a receber nesta etapa poderá ter nas próximas
-            fases, diz BC
-          </h1>
+        <article key={mainArticle.id} className={`${styles.mainNews} h1`}>
+          <p className="category economy">{mainArticle.category}</p>
+          <h1>{mainArticle.title}</h1>
         </article>
         <div className={styles.boxSecondaryArticle}>
-          <article className={styles.secondaryArticle}>
-            <Image
-              src="/figure.png"
-              alt="educação"
-              width={280}
-              height={190}
-              className={styles.imgArticles}
-            />
-            <p className="category education">EDUCAÇÃO</p>
-            <h2>
-              Datafolha: Após ensino remoto, 76% precisam de reforço na
-              alfabetização
-            </h2>
-          </article>
-          <article className={styles.secondaryArticle}>
-            <Image
-              src="/figure.png"
-              alt="educação"
-              width={280}
-              height={190}
-              className={styles.imgArticles}
-            />
-            <p className="category education">EDUCAÇÃO</p>
-            <h2>
-              Datafolha: Após ensino remoto, 76% precisam de reforço na
-              alfabetização
-            </h2>
-          </article>
+          {data.map((article, index) => {
+            if (index === 0) {
+              return <></>
+            }
+
+            return (
+              <>
+                <article
+                  key={article.id}
+                  className={`${styles.secondaryArticle} h${index + 1}`}
+                >
+                  <Image
+                    src={article.img!}
+                    alt=""
+                    width={280}
+                    height={190}
+                    className={styles.imgArticles}
+                  />
+                  <p className="category education">{article.category}</p>
+                  <h2>{article.title}</h2>
+                </article>
+              </>
+            )
+          })}
         </div>
       </section>
 
