@@ -3,6 +3,7 @@ import styles from './page.module.css'
 import Image from 'next/image'
 import { api } from '@/services/api'
 import { IArticle } from '@/interfaces'
+import Link from 'next/link'
 
 interface IGetArticlesProps {
   route: 'main' | 'secondary'
@@ -29,10 +30,12 @@ export default async function Home() {
     <main className={`${styles.container} container`}>
       <Advertising />
       <section className={styles.mainArticles}>
-        <article key={mainArticle.id} className={`${styles.mainNews} h1`}>
-          <p className="category economy">{mainArticle.category}</p>
-          <h1>{mainArticle.title}</h1>
-        </article>
+        <Link href={`/article/${mainArticle.id}`}>
+          <article key={mainArticle.id} className={`${styles.mainNews} h1`}>
+            <p className="category economy">{mainArticle.category}</p>
+            <h1>{mainArticle.title}</h1>
+          </article>
+        </Link>
         <div className={styles.boxSecondaryArticle}>
           {dataMainArticles.map((article, index) => {
             if (index === 0) {
@@ -40,11 +43,8 @@ export default async function Home() {
             }
 
             return (
-              <>
-                <article
-                  key={article.id}
-                  className={`${styles.secondaryArticle} h${index + 1}`}
-                >
+              <Link key={article.id} href={`/article/${article.id}`}>
+                <article className={`${styles.secondaryArticle} h${index + 1}`}>
                   <Image
                     src={article.img!}
                     alt=""
@@ -55,7 +55,7 @@ export default async function Home() {
                   <p className="category education">{article.category}</p>
                   <h2>{article.title}</h2>
                 </article>
-              </>
+              </Link>
             )
           })}
         </div>
@@ -64,12 +64,14 @@ export default async function Home() {
       <section className={styles.boxThirArticle}>
         {dataSecondaryArticles.map((article) => {
           return (
-            <article key={article.id} className={styles.thirdArticle}>
-              <div
-                className={`${styles.vector} ${article.category === 'ECONOMIA' ? styles.vectorRed : article.category === 'EDUCAÇÃO' ? styles.vectorBlue : styles.vectorGreen}`}
-              />
-              {article.title}
-            </article>
+            <Link key={article.id} href={`/article/${article.id}`}>
+              <article className={styles.thirdArticle}>
+                <div
+                  className={`${styles.vector} ${article.category === 'ECONOMIA' ? styles.vectorRed : article.category === 'EDUCAÇÃO' ? styles.vectorBlue : styles.vectorGreen}`}
+                />
+                {article.title}
+              </article>
+            </Link>
           )
         })}
       </section>

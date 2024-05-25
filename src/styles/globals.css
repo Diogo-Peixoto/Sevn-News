@@ -1,12 +1,12 @@
-:root{
-  --yellow:#FFBD14;
-  --red:#FF2D2D;
-  --blue:#24538B;
-  --green:#248B28;
-  --gray:rgba(0, 0, 0, 0.2);
-  --black:#000;
-  --white:#FFF;
-  --of-white:#EBEFF1;
+:root {
+  --yellow: #FFBD14;
+  --red: #FF2D2D;
+  --blue: #24538B;
+  --green: #248B28;
+  --gray: rgba(0, 0, 0, 0.2);
+  --black: #000;
+  --white: #FFF;
+  --of-white: #EBEFF1;
 
 }
 
@@ -22,22 +22,22 @@ body {
   max-width: 100vw;
 }
 
-.container{
+.container {
   max-width: 1220px;
-    padding-inline: 20px;
+  padding-inline: 20px;
 }
 
-h1{
+h1 {
   font-size: 3.625rem;
   line-height: 60px;
 
-  @media(max-width:1180px){
+  @media(max-width:1180px) {
     font-size: 3rem;
     line-height: 47px;
 
   }
 
-  @media(max-width:620px){
+  @media(max-width:620px) {
     font-size: 2.2rem;
     line-height: 43px;
 
@@ -45,24 +45,30 @@ h1{
 
 }
 
-h2{
+h2 {
   font-size: 1.25rem;
   line-height: 26px;
 }
 
-.category{
+a {
+  color: var(--black);
+  text-decoration: none;
+
+}
+
+.category {
   font-size: 0.75rem;
   line-height: 15.6px;
 }
 
-.economy{
+.economy {
   color: var(--red);
 }
 
-.education{
+.education {
   color: var(--blue);
 }
 
-.diversities{
+.diversities {
   color: var(--green);
 }
