@@ -65,7 +65,9 @@ export default async function Home() {
         {dataSecondaryArticles.map((article) => {
           return (
             <article key={article.id} className={styles.thirdArticle}>
-              <div className={styles.vector} />
+              <div
+                className={`${styles.vector} ${article.category === 'ECONOMIA' ? styles.vectorRed : article.category === 'EDUCAÇÃO' ? styles.vectorBlue : styles.vectorGreen}`}
+              />
               {article.title}
             </article>
           )
