@@ -1,37 +1,8 @@
-.container{
-    margin: 35px auto ;
+.container {
+    margin: 35px auto;
 
     display: flex;
     flex-direction: column;
     gap: 30px;
 
-}
-
-.title{
-    @media (max-width:420px) {
-        font-size: 1.6rem;
-        line-height: 30px;
-    }
-}
-
-.text{
-    color: var(--black);
-    font-weight: 400;
-    line-height: 32.5px;
-    font-size: 1.563rem;
-
-    @media(max-width:1024px){
-        font-size: 1rem;
-    }
-
-    @media (max-width:420px){
-        font-size: 0.9rem;
-        line-height: 20px;
-    }
-
-}
-
-.articleInformation{
-    color: var(--gray);
-    font-size: 0.75rem;
 }

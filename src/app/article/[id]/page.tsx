@@ -1,12 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import { redirect } from 'next/navigation'
+import { Metadata } from 'next'
 
 import { api } from '@/services/api'
 import { IArticle } from '@/interfaces'
+
+import { PlainText } from './components/PlainText'
 import { Advertising } from '@/components/Advertising'
+import { InfoArticle } from './components/InfoArticle'
+import { HeaderArticle } from './components/HeaderArticle'
 
 import styles from './styles.module.css'
-import { Metadata } from 'next'
 
 interface IParamsProps {
   params: { id: string }
@@ -39,24 +43,22 @@ const ArticlePage = async ({ params }: IParamsProps) => {
 
   return (
     <main className={`${styles.container} container`}>
-      <header>
-        <p className="category economy">{dataSpecificArticle.category}</p>
-        <h1 className={styles.title}>{dataSpecificArticle.title}</h1>
-      </header>
+      <HeaderArticle
+        title={dataSpecificArticle.title}
+        category={dataSpecificArticle.category}
+      />
 
-      <p className={styles.text}>{dataSpecificArticle.text[0]}</p>
+      <PlainText text={dataSpecificArticle.text[0]} />
 
-      <span className={styles.articleInformation}>
-        {dataSpecificArticle.pub_date}, Por: {dataSpecificArticle.author}
-      </span>
+      <InfoArticle
+        pubDate={dataSpecificArticle.pub_date}
+        author={dataSpecificArticle.author}
+      />
 
       <Advertising />
+
       {dataSpecificArticle.text.map((text) => {
-        return (
-          <p key={Math.random()} className={styles.text}>
-            {text}
-          </p>
-        )
+        return <PlainText key={Math.random()} text={text} />
       })}
     </main>
   )
