@@ -38,9 +38,9 @@ Seja bem-vindo ao meu projeto! Primeiramente, gostaria de agradecer pela oportun
 ## Tech 
 
 
-![Logo](https://skillicons.dev/icons?i=nextjs,css)
+![Logo](https://skillicons.dev/icons?i=nextjs,css,typescript)
 
-
+### Back-end: Nodejs e Fastify
 
 
 
