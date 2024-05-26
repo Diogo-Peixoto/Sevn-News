@@ -9,15 +9,6 @@
 
 
 
-.mainNews {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-
-    cursor: pointer;
-}
-
 
 
 

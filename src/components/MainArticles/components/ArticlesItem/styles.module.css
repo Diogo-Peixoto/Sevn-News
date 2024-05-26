@@ -1,0 +1,15 @@
+.secondaryArticle {
+    max-width: 280px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    cursor: pointer;
+}
+
+.imgArticles {
+    width: 280px;
+    height: 190px;
+    border-radius: 10px;
+}
