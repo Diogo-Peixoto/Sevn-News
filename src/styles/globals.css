@@ -56,6 +56,12 @@ a {
 
 }
 
+button {
+  border: 0;
+  padding: 0;
+
+}
+
 .category {
   font-size: 0.75rem;
   line-height: 15.6px;
