@@ -2,7 +2,7 @@ import { api } from '@/services/api'
 import { IArticle } from '@/interfaces'
 import { Advertising } from '@/components/Advertising'
 
-import styles from './page.module.css'
+import styles from '../styles/index.module.css'
 import { MainArticles } from '@/components/Home/MainArticles'
 import { SecondaryArticles } from '@/components/Home/SecondaryArticles'
 
