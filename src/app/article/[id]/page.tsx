@@ -1,8 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Advertising } from '@/components/Advertising'
-import styles from './styles.module.css'
+import { redirect } from 'next/navigation'
+
 import { api } from '@/services/api'
 import { IArticle } from '@/interfaces'
+import { Advertising } from '@/components/Advertising'
+
+import styles from './styles.module.css'
 
 export const getSpecificArticle = async (id: string) => {
   try {
@@ -11,7 +14,7 @@ export const getSpecificArticle = async (id: string) => {
     return data as IArticle
   } catch (err) {
     console.error(err)
-    throw new Error('Failed to fetch data')
+    redirect('/')
   }
 }
 

@@ -1,9 +1,11 @@
-import { Advertising } from '@/components/Advertising'
-import styles from './page.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
+
 import { api } from '@/services/api'
 import { IArticle } from '@/interfaces'
-import Link from 'next/link'
+import { Advertising } from '@/components/Advertising'
+
+import styles from './page.module.css'
 
 interface IGetArticlesProps {
   route: 'main' | 'secondary'
