@@ -1,11 +1,10 @@
-import Link from 'next/link'
-
 import { api } from '@/services/api'
 import { IArticle } from '@/interfaces'
 import { Advertising } from '@/components/Advertising'
 
 import styles from './page.module.css'
-import { MainArticles } from '@/components/MainArticles'
+import { MainArticles } from '@/components/Home/MainArticles'
+import { SecondaryArticles } from '@/components/Home/SecondaryArticles'
 
 interface IGetArticlesProps {
   route: 'main' | 'secondary'
@@ -31,21 +30,7 @@ export default async function Home() {
     <main className={`${styles.container} container`}>
       <Advertising />
       <MainArticles dataMainArticles={dataMainArticles} />
-
-      <section className={styles.boxThirArticle}>
-        {dataSecondaryArticles.map((article) => {
-          return (
-            <Link key={article.id} href={`/article/${article.id}`}>
-              <article className={styles.thirdArticle}>
-                <div
-                  className={`${styles.vector} ${article.category === 'ECONOMIA' ? styles.vectorRed : article.category === 'EDUCAÇÃO' ? styles.vectorBlue : styles.vectorGreen}`}
-                />
-                {article.title}
-              </article>
-            </Link>
-          )
-        })}
-      </section>
+      <SecondaryArticles dataSecondaryArticles={dataSecondaryArticles} />
     </main>
   )
 }
