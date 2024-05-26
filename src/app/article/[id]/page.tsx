@@ -6,6 +6,11 @@ import { IArticle } from '@/interfaces'
 import { Advertising } from '@/components/Advertising'
 
 import styles from './styles.module.css'
+import { Metadata } from 'next'
+
+interface IParamsProps {
+  params: { id: string }
+}
 
 export const getSpecificArticle = async (id: string) => {
   try {
@@ -18,7 +23,18 @@ export const getSpecificArticle = async (id: string) => {
   }
 }
 
-const ArticlePage = async ({ params }: { params: { id: string } }) => {
+export const generateMetadata = async ({
+  params,
+}: IParamsProps): Promise<Metadata> => {
+  const article = await getSpecificArticle(params.id)
+
+  return {
+    title: article.title,
+    description: article.description_seo,
+  }
+}
+
+const ArticlePage = async ({ params }: IParamsProps) => {
   const dataSpecificArticle = await getSpecificArticle(params.id)
 
   return (
