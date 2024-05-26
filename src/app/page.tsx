@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { api } from '@/services/api'
@@ -6,6 +5,7 @@ import { IArticle } from '@/interfaces'
 import { Advertising } from '@/components/Advertising'
 
 import styles from './page.module.css'
+import { MainArticles } from '@/components/MainArticles'
 
 interface IGetArticlesProps {
   route: 'main' | 'secondary'
@@ -24,44 +24,13 @@ export const getArticles = async ({ route }: IGetArticlesProps) => {
 
 export default async function Home() {
   const dataMainArticles = await getArticles({ route: 'main' })
-  const mainArticle = dataMainArticles[0]
 
   const dataSecondaryArticles = await getArticles({ route: 'secondary' })
 
   return (
     <main className={`${styles.container} container`}>
       <Advertising />
-      <section className={styles.mainArticles}>
-        <Link href={`/article/${mainArticle.id}`}>
-          <article key={mainArticle.id} className={`${styles.mainNews} h1`}>
-            <p className="category economy">{mainArticle.category}</p>
-            <h1>{mainArticle.title}</h1>
-          </article>
-        </Link>
-        <div className={styles.boxSecondaryArticle}>
-          {dataMainArticles.map((article, index) => {
-            if (index === 0) {
-              return <></>
-            }
-
-            return (
-              <Link key={article.id} href={`/article/${article.id}`}>
-                <article className={`${styles.secondaryArticle} h${index + 1}`}>
-                  <Image
-                    src={article.img!}
-                    alt=""
-                    width={280}
-                    height={190}
-                    className={styles.imgArticles}
-                  />
-                  <p className="category education">{article.category}</p>
-                  <h2>{article.title}</h2>
-                </article>
-              </Link>
-            )
-          })}
-        </div>
-      </section>
+      <MainArticles dataMainArticles={dataMainArticles} />
 
       <section className={styles.boxThirArticle}>
         {dataSecondaryArticles.map((article) => {
