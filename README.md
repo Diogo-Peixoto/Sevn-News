@@ -30,7 +30,6 @@ Seja bem-vindo ao meu projeto! Primeiramente, gostaria de agradecer pela oportun
 - Responsividade
 - Organização
 - Fácil manutenção
-- Projeto no ar
 - Tratamento de erros
 - Git Flow
 
@@ -41,11 +40,4 @@ Seja bem-vindo ao meu projeto! Primeiramente, gostaria de agradecer pela oportun
 ![Logo](https://skillicons.dev/icons?i=nextjs,css,typescript)
 
 ### Back-end: Nodejs e Fastify
-
-
-
-
-## Demo
-
-https://vercel.com/dashboard
 
